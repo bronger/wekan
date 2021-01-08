@@ -109,7 +109,7 @@ Migrations.add('use-css-class-for-boards-colors', () => {
   const associationTable = {
     '#27AE60': 'nephritis',
     '#C0392B': 'pomegranate',
-    '#2980B9': 'belize',
+    '#ADBDE3': 'belize',
     '#8E44AD': 'wisteria',
     '#2C3E50': 'midnight',
     '#E67E22': 'pumpkin',
