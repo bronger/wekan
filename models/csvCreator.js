@@ -158,7 +158,7 @@ export class CsvCreator {
   createBoard(csvData) {
     const boardToCreate = {
       archived: false,
-      color: 'belize',
+      color: 'kfa',
       createdAt: this._now(),
       labels: [],
       members: [

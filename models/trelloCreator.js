@@ -503,7 +503,7 @@ export class TrelloCreator {
   getColor(trelloColorCode) {
     // trello color name => wekan color
     const mapColors = {
-      blue: 'belize',
+      blue: 'kfa',
       orange: 'pumpkin',
       green: 'nephritis',
       red: 'pomegranate',

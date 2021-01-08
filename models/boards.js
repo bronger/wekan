@@ -239,7 +239,7 @@ Boards.attachSchema(
        */
       type: String,
       allowedValues: [
-        'belize',
+        'kfa',
         'nephritis',
         'pomegranate',
         'pumpkin',
@@ -1577,7 +1577,7 @@ if (Meteor.isServer) {
    *
    * @description This allows to create a board.
    *
-   * The color has to be chosen between `belize`, `nephritis`, `pomegranate`,
+   * The color has to be chosen between `kfa`, `nephritis`, `pomegranate`,
    * `pumpkin`, `wisteria`, `moderatepink`, `strongcyan`,
    * `limegreen`, `midnight`, `dark`, `relax`, `corteza`:
    *
@@ -1614,7 +1614,7 @@ if (Meteor.isServer) {
           },
         ],
         permission: req.body.permission || 'private',
-        color: req.body.color || 'belize',
+        color: req.body.color || 'kfa',
       });
       const swimlaneId = Swimlanes.insert({
         title: TAPi18n.__('default'),
