@@ -33,8 +33,9 @@ template(name="userFormsLayout")
           img(src="{{currentSetting.customLoginLogoImageUrl}}" width="300" height="auto")
           br
       unless currentSetting.customLoginLogoImageUrl
-        img(src="{{pathFor '/wekan-logo.svg'}}" alt="" width="300" height="auto")
+        img(src="{{pathFor '/fzj/logo_gefüllt.svg'}}" alt="FZJ logo" width="100" height="auto" style="background-color: white; padding: 30px")
         br
+        p(style="text-align: center; font-size: large; margin: 1em") FZJ-ZB Wekan
       if currentSetting.textBelowCustomLoginLogo
         +viewer
           | {{currentSetting.textBelowCustomLoginLogo}}
