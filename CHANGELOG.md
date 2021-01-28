@@ -1,3 +1,96 @@
+# v4.90 2021-01-28 Wekan release
+
+This release adds the following new features:
+
+- [Create unique board names when importing](https://github.com/wekan/wekan/pull/3499).
+  Thanks to jrsupplee.
+
+and fixes the following bugs:
+
+- [Added missing backtick quotes](https://github.com/wekan/wekan/commit/bf7b1789ec16e3c52397318c799ec5a0fc2de3a5).
+  Thanks to xet7.
+- [Fix some bugs when importing Wekan JSON](https://github.com/wekan/wekan/pull/3500).
+  Thanks to jrsupplee.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v4.89 2021-01-28 Wekan release
+
+This release fixes the following bugs:
+
+- [Try to fix quotes in Global Search](https://github.com/wekan/wekan/commit/0ff215f78f03c81d153dfc0ffa08fac94b542ec2).
+  Thanks to xet7.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v4.88 2021-01-28 Wekan release
+
+This release adds the following new features:
+
+- [Additional URL schemes: SolidWorks PDM (conisio:) and abas ERP (abasurl:)](https://github.com/wekan/wekan/pull/3487).
+  Thanks to tod31.
+
+and adds the following improvements:
+
+- [Mobile and Desktop have now the same Quick Access view + scrollable](https://github.com/wekan/wekan/pull/3491).
+  Thanks to mfilser.
+- [Global Search Update](https://github.com/wekan/wekan/pull/3492).
+  Thanks to jrsupplee.
+- [Added many more fields to Export to Excel, and better formatting. Does not yet have all
+  fields](https://github.com/wekan/wekan/commit/37372466ccd15c7d5d4a55510b349fac0953c425).
+  Thanks to xet7.
+
+and fixes the following bugs:
+
+- [Changed method to create initials same as others for new user of oidc](https://github.com/wekan/wekan/pull/3489).
+  Thanks to sato-64bit.
+- [Removed quotes from docker-compose.yml settings](https://github.com/wekan/wekan/commit/b1cdcda8ed78d48505a8da5180d7aed46a24fd64).
+  Thanks to XL-Reaper, Vinc89 and xet7.
+- [Repair LDAP_REJECT_UNAUTHORIZED=false CVE-2021-3309](https://github.com/wekan/wekan/pull/3497).
+  Thanks to robert-scheck.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v4.87 2021-01-26 Wekan release
+
+This release fixes the following bugs:
+
+- [Reject by default LDAP connections not authorized via CA trust store](https://github.com/wekan/wekan/pull/3483).
+  Thanks to robert-scheck.
+- [Handle '\n' line breaks in PEM-encoded SSL/TLS certificates](https://github.com/wekan/wekan/pull/3485).
+  Thanks to robert-scheck.
+
+and adds the following improvements
+
+- [Try parallel build of releases, does it work](https://github.com/wekan/wekan/commit/be238ac7439ce38b4403d9a611dec9bb421a856f).
+  Thanks to xet7.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v4.86 2021-01-25 Wekan release
+
+This release adds the following improvements:
+
+- [Added PWA related category, orientation, screenshots, maskable icon and
+  IARC rating ID](https://github.com/wekan/wekan/commit/027771b3021a709d9049015e7d7e6faccf1ad7f3).
+  Thanks to xet7.
+- [Added PWA related monochrome icon](https://github.com/wekan/wekan/commit/2977f7cf47626b429159cb7b7496919c07ece914).
+  Thanks to xet7.
+- [Mention Wekan GitHub Discussions at readme](https://github.com/wekan/wekan/commit/4c0bd359f921ae0ea722f78946fcc1168e8b939e).
+  Thanks to xet7.
+
+and adds the following updates:
+
+- [Use Node 12.20.1 in rebuild-wekan.sh](https://github.com/wekan/wekan/commit/37d76e9e061d31c11fca8e704e9b4c54f17c0023).
+  Thanks to xet7.
+
+and fixes the following bugs:
+
+- [Move call to URL search to onRendered](https://github.com/wekan/wekan/pull/3478).
+  Thanks to jrsupplee.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
 # v4.85 2021-01-23 Wekan release
 
 This release adds the following new features:

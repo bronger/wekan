@@ -510,6 +510,7 @@ Boards.helpers({
     const oldId = this._id;
     delete this._id;
     delete this.slug;
+    this.title = this.copyTitle();
     const _id = Boards.insert(this);
 
     // Copy all swimlanes in board
@@ -569,20 +570,7 @@ Boards.helpers({
    * @returns {string|null}
    */
   copyTitle() {
-    const m = this.title.match(/^(?<title>.*?)\s*(\[(?<num>\d+)]\s*$|\s*$)/);
-    const title = escapeForRegex(m.groups.title);
-    let num = 0;
-    Boards.find({ title: new RegExp(`^${title}\\s*\\[\\d+]\\s*$`) }).forEach(
-      board => {
-        const m = board.title.match(/^(?<title>.*?)\s*\[(?<num>\d+)]\s*$/);
-        if (m) {
-          const n = parseInt(m.groups.num, 10);
-          num = num < n ? n : num;
-        }
-      },
-    );
-
-    return `${title} [${num + 1}]`;
+    return Boards.uniqueTitle(this.title);
   },
 
   /**
@@ -1274,41 +1262,54 @@ function boardRemover(userId, doc) {
   );
 }
 
+Boards.uniqueTitle = title => {
+  const m = title.match(`/^(?<title>.*?)\s*(\[(?<num>\d+)]\s*$|\s*$)/`);
+  const base = escapeForRegex(m.groups.title);
+  let num = 0;
+  Boards.find({ title: new RegExp(`^${base}\\s*\\[\\d+]\\s*$`) }).forEach(
+    board => {
+      const m = board.title.match(`/^(?<title>.*?)\s*\[(?<num>\d+)]\s*$/`);
+      if (m) {
+        const n = parseInt(m.groups.num, 10);
+        num = num < n ? n : num;
+      }
+    },
+  );
+
+  return `${base} [${num + 1}]`;
+};
+
 Boards.userSearch = (
   userId,
   selector = {},
   projection = {},
-  includeArchived = false,
+  // includeArchived = false,
 ) => {
-  if (!includeArchived) {
-    selector.archived = false;
-  }
-  selector.$or = [
-    { permission: 'public' },
-    { members: { $elemMatch: { userId, isActive: true } } },
-  ];
+  // if (!includeArchived) {
+  //   selector.archived = false;
+  // }
+  selector.$or = [{ permission: 'public' }];
 
+  if (userId) {
+    selector.$or.push({ members: { $elemMatch: { userId, isActive: true } } });
+  }
   return Boards.find(selector, projection);
 };
 
-Boards.userBoards = (userId, includeArchived = false, selector = {}) => {
-  check(userId, String);
-
-  if (!includeArchived) {
-    selector = {
-      archived: false,
-    };
+Boards.userBoards = (userId, archived = false, selector = {}) => {
+  if (typeof archived === 'boolean') {
+    selector.archived = archived;
   }
-  selector.$or = [
-    { permission: 'public' },
-    { members: { $elemMatch: { userId, isActive: true } } },
-  ];
+  selector.$or = [{ permission: 'public' }];
 
+  if (userId) {
+    selector.$or.push({ members: { $elemMatch: { userId, isActive: true } } });
+  }
   return Boards.find(selector);
 };
 
-Boards.userBoardIds = (userId, includeArchived = false, selector = {}) => {
-  return Boards.userBoards(userId, includeArchived, selector).map(board => {
+Boards.userBoardIds = (userId, archived = false, selector = {}) => {
+  return Boards.userBoards(userId, archived, selector).map(board => {
     return board._id;
   });
 };
