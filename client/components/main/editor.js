@@ -367,7 +367,7 @@ Template.viewer.events({
     } else {
       const href = event.currentTarget.href;
       if (href) {
-        window.open(href, '_blank');
+        window.open(href, '_self');
       }
     }
     if (prevent) {
