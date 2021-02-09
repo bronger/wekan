@@ -213,6 +213,7 @@ Template.changeLanguagePopup.events({
         'profile.language': this.tag,
       },
     });
+    TAPi18n.setLanguage(this.tag);
     event.preventDefault();
   },
 });
@@ -270,6 +271,13 @@ Template.changeSettingsPopup.helpers({
 });
 
 Template.changeSettingsPopup.events({
+  'keypress/paste #show-cards-count-at'() {
+    let keyCode = event.keyCode;
+    let charCode = String.fromCharCode(keyCode);
+    let regex = new RegExp('[-0-9]');
+    let ret = regex.test(charCode);
+    return ret;
+  },
   'click .js-toggle-desktop-drag-handles'() {
     currentUser = Meteor.user();
     if (currentUser) {
@@ -292,7 +300,7 @@ Template.changeSettingsPopup.events({
   },
   'click .js-apply-user-settings'(event, templateInstance) {
     event.preventDefault();
-    const minLimit = parseInt(
+    let minLimit = parseInt(
       templateInstance.$('#show-cards-count-at').val(),
       10,
     );
@@ -301,6 +309,9 @@ Template.changeSettingsPopup.events({
       10,
     );
     const currentUser = Meteor.user();
+    if (isNaN(minLimit) || minLimit < -1) {
+      minLimit = -1;
+    }
     if (!isNaN(minLimit)) {
       if (currentUser) {
         Meteor.call('changeLimitToShowCardsCount', minLimit);
