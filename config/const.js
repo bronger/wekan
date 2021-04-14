@@ -1,5 +1,5 @@
 export const ALLOWED_BOARD_COLORS = [
-  'belize',
+  'kfa',
   'nephritis',
   'pomegranate',
   'pumpkin',
