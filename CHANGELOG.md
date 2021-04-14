@@ -1,3 +1,53 @@
+# v5.19 2021-04-14 Wekan release
+
+This release adds the following new features:
+
+- [Custom Field "String Template"](https://github.com/wekan/wekan/pull/3701).
+  Thanks to tod31.
+- [1) Admin reports. An option added to the admin panel that has reports an admin can run. 
+      Right now it has two reports for attachments and broken cards.
+  2) Add the creator avatar to `cardDetails` and `minicard`.  Avatar is only shown if it is selected in card settings.
+  3) Added a new search operator `creator`.
+  4) Bug fix for multiple label predicates](https://github.com/wekan/wekan/pull/3705).
+  Thanks to jrsupplee.
+- [Update Admin Panel Rules report icon and add missing translations](https://github.com/wekan/wekan/commit/8417fae89cc89adb4559874050ff7c56cc08eb00).
+  Thanks to xet7.
+
+and adds the following updates:
+
+- [Upgraded to Meteor 2.1.1 an updated dependencies](https://github.com/wekan/wekan/commit/bb8c4325c60582cdcda5d406071586f18681e737).
+  Thanks to developers of dependencies.
+- [Updated to Node.js v12.22.1](https://github.com/wekan/wekan/commit/2201372744639ade3ba74b6ff9115988f011b9ac).
+  Thanks to Node.js developers.
+- [Updated release scripts](https://github.com/wekan/wekan/commit/9871bf196352edcb5475e1b0ee4983e8f312e449).
+  Thanks to xet7.
+- [Updated caniuse-lite etc dependencies](https://github.com/wekan/wekan/commit/0857a2ea91f672201ba96f2ba635165784b30fd8).
+  Thanks to developers of dependencies.
+
+and fixes the following bugs:
+
+- [Revert stable tag, because it did break Wekan version numbers](https://github.com/wekan/wekan/commit/5ca90f4d2245910580cb0af885fac17dcec44ef0).
+  Thanks to xet7.
+- [Updating ARM Dockerfile](https://github.com/wekan/wekan/pull/3692).
+  Thanks to loganballard.
+- [Added latest arm64 bundle symlink](https://github.com/wekan/wekan/commit/6fe3edebb18414ebe7e69b2de3269438662b6163).
+  Thanks to xet7.
+- [Bug fix: Rules for moving from list/swimlane](https://github.com/wekan/wekan/pull/3706).
+  Thanks to jrsupplee.
+- [Fixed Elements are duplicated on the view "My cards".
+  Rewrite routine for building the My Cards hierarchical list.
+  Use a separate publication for retrieving My Cards.
+  Fixed bug with limit and skip projection](https://github.com/wekan/wekan/pull/3708).
+  Thanks to jrsupplee.
+- [Popover needs to be destroyed anytime the details panel is closed](https://github.com/wekan/wekan/pull/3712).
+  Thanks to ryanMushy.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v5.18 2021-04-14 Wekan release
+
+Not released version, because some version numbers not changed in all release files.
+
 # v5.17 2021-04-01 Wekan release
 
 This release fixes the following bugs:
