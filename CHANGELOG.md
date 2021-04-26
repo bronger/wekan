@@ -1,3 +1,22 @@
+# v5.24 2021-04-24 Wekan release
+
+This release adds the following new features:
+
+- [Copy Swimlane](https://github.com/wekan/wekan/pull/3753).
+  Thanks to jrsupplee.
+
+and adds the following updates:
+
+- [Updated dependencies](https://github.com/wekan/wekan/commit/e738177e081e4a7e83fed3389f47847403551fc2).
+  Thanks to developers of dependencies.
+
+and fixes the following bugs:
+
+- [Fix Snap: Delete extra symlink that prevented building Snap](https://github.com/wekan/wekan/commit/45124a39f34a918b251a4a36fb016639b558f119).
+  Thanks to xet7.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
 # v5.23 2021-04-22 Wekan release
 
 This release adds the following new features:
