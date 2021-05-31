@@ -13,8 +13,9 @@ template(name="listHeader")
         class="{{#if currentUser.isBoardMember}}{{#unless currentUser.isCommentOnly}}{{#unless currentUser.isWorker}}js-open-inlined-form is-editable{{/unless}}{{/unless}}{{/if}}")
         +viewer
           = title
+        |&nbsp;
         if wipLimit.enabled
-         |&nbsp;(
+         |(
          span(class="{{#if exceededWipLimit}}highlight{{/if}}") {{cards.count}}
          |/#{wipLimit.value})
 
