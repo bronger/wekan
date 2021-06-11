@@ -38,6 +38,44 @@ Users.attachSchema(
         }
       },
     },
+    orgs: {
+      /**
+       * the list of organizations that a user belongs to
+       */
+       type: [Object],
+       optional: true,
+    },
+    'orgs.$.orgId':{
+      /**
+       * The uniq ID of the organization
+       */
+       type: String,
+    },
+    'orgs.$.orgDisplayName':{
+      /**
+       * The display name of the organization
+       */
+       type: String,
+    },
+    teams: {
+      /**
+       * the list of teams that a user belongs to
+       */
+       type: [Object],
+       optional: true,
+    },
+    'teams.$.teamId':{
+      /**
+       * The uniq ID of the team
+       */
+       type: String,
+    },
+    'teams.$.teamDisplayName':{
+      /**
+       * The display name of the team
+       */
+       type: String,
+    },
     emails: {
       /**
        * the list of emails attached to a user
@@ -329,13 +367,7 @@ Users.attachSchema(
     },
     'sessionData.totalHits': {
       /**
-       * Total hits from last search
-       */
-      type: Number,
-      optional: true,
-    },
-    'sessionData.lastHit': {
-      /**
+       * Total hits from last searchquery['members.userId'] = Meteor.userId();
        * last hit that was returned
        */
       type: Number,
@@ -464,7 +496,30 @@ Users.helpers({
     }
     return '';
   },
-
+  orgsUserBelongs() {
+    if (this.orgs) {
+      return this.orgs.map(function(org){return org.orgDisplayName}).join(',');
+    }
+    return '';
+  },
+  orgIdsUserBelongs() {
+    if (this.orgs) {
+      return this.orgs.map(function(org){return org.orgId}).join(',');
+    }
+    return '';
+  },
+  teamsUserBelongs() {
+    if (this.teams) {
+      return this.teams.map(function(team){ return team.teamDisplayName}).join(',');
+    }
+    return '';
+  },
+  teamIdsUserBelongs() {
+    if (this.teams) {
+      return this.teams.map(function(team){ return team.teamId}).join(',');
+    }
+    return '';
+  },
   boards() {
     return Boards.find(
       {
@@ -894,17 +949,20 @@ if (Meteor.isServer) {
       isActive,
       email,
       importUsernames,
+      userOrgsArray,
+      userTeamsArray,
     ) {
+      check(fullname, String);
+      check(username, String);
+      check(initials, String);
+      check(password, String);
+      check(isAdmin, String);
+      check(isActive, String);
+      check(email, String);
+      check(importUsernames, Array);
+      check(userOrgsArray, Array);
+      check(userTeamsArray, Array);
       if (Meteor.user() && Meteor.user().isAdmin) {
-        check(fullname, String);
-        check(username, String);
-        check(initials, String);
-        check(password, String);
-        check(isAdmin, String);
-        check(isActive, String);
-        check(email, String);
-        check(importUsernames, Array);
-
         const nUsersWithUsername = Users.find({
           username,
         }).count();
@@ -935,6 +993,8 @@ if (Meteor.isServer) {
                 'profile.fullname': fullname,
                 importUsernames,
                 'profile.initials': initials,
+                orgs: userOrgsArray,
+                teams: userTeamsArray,
               },
             });
           }
@@ -942,9 +1002,9 @@ if (Meteor.isServer) {
       }
     },
     setUsername(username, userId) {
+      check(username, String);
+      check(userId, String);
       if (Meteor.user() && Meteor.user().isAdmin) {
-        check(username, String);
-        check(userId, String);
         const nUsersWithUsername = Users.find({
           username,
         }).count();
@@ -960,11 +1020,12 @@ if (Meteor.isServer) {
       }
     },
     setEmail(email, userId) {
+      check(email, String);
+      check(username, String);
       if (Meteor.user() && Meteor.user().isAdmin) {
         if (Array.isArray(email)) {
           email = email.shift();
         }
-        check(email, String);
         const existingUser = Users.findOne(
           {
             'emails.address': email,
@@ -992,31 +1053,31 @@ if (Meteor.isServer) {
       }
     },
     setUsernameAndEmail(username, email, userId) {
+      check(username, String);
+      check(email, String);
+      check(userId, String);
       if (Meteor.user() && Meteor.user().isAdmin) {
-        check(username, String);
         if (Array.isArray(email)) {
           email = email.shift();
         }
-        check(email, String);
-        check(userId, String);
         Meteor.call('setUsername', username, userId);
         Meteor.call('setEmail', email, userId);
       }
     },
     setPassword(newPassword, userId) {
+      check(userId, String);
+      check(newPassword, String);
       if (Meteor.user() && Meteor.user().isAdmin) {
-        check(userId, String);
-        check(newPassword, String);
         if (Meteor.user().isAdmin) {
           Accounts.setPassword(userId, newPassword);
         }
       }
     },
     setEmailVerified(email, verified, userId) {
+      check(email, String);
+      check(verified, Boolean);
+      check(userId, String);
       if (Meteor.user() && Meteor.user().isAdmin) {
-        check(email, String);
-        check(verified, Boolean);
-        check(userId, String);
         Users.update(userId, {
           $set: {
             emails: [
@@ -1030,9 +1091,9 @@ if (Meteor.isServer) {
       }
     },
     setInitials(initials, userId) {
+      check(initials, String);
+      check(userId, String);
       if (Meteor.user() && Meteor.user().isAdmin) {
-        check(initials, String);
-        check(userId, String);
         Users.update(userId, {
           $set: {
             'profile.initials': initials,

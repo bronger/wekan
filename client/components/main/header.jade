@@ -31,10 +31,10 @@ template(name="header")
         unless currentSetting.hideLogo
           if currentSetting.customTopLeftCornerLogoImageUrl
             if currentSetting.customTopLeftCornerLogoLinkUrl
-              a(href="{{currentSetting.customTopLeftCornerLogoLinkUrl}}")
+              a(href="{{currentSetting.customTopLeftCornerLogoLinkUrl}}" alt="{{currentSetting.productName}}" title="{{currentSetting.productName}}")
                 img(src="{{currentSetting.customTopLeftCornerLogoImageUrl}}" height="{{#if currentSetting.customTopLeftCornerLogoHeight}}#{currentSetting.customTopLeftCornerLogoHeight}{{else}}27{{/if}}" width="auto" margin="0" padding="0")
             unless currentSetting.customTopLeftCornerLogoLinkUrl
-              img(src="{{currentSetting.customTopLeftCornerLogoImageUrl}}" height="{{#if currentSetting.customTopLeftCornerLogoHeight}}#{currentSetting.customTopLeftCornerLogoHeight}{{else}}27{{/if}}" width="auto" margin="0" padding="0")
+              img(src="{{currentSetting.customTopLeftCornerLogoImageUrl}}" height="{{#if currentSetting.customTopLeftCornerLogoHeight}}#{currentSetting.customTopLeftCornerLogoHeight}{{else}}27{{/if}}" width="auto" margin="0" padding="0" alt="{{currentSetting.productName}}" title="{{currentSetting.productName}}")
           unless currentSetting.customTopLeftCornerLogoImageUrl
             img(src="/fzj/logo_gefüllt.svg" alt="FZJ logo" height="28" style="margin: -10px 1em 0 0; padding: 10px; background-color: white")
         span.allBoards

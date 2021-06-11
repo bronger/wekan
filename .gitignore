@@ -32,4 +32,4 @@ ehthumbs.db
 .eslintcache
 .meteor/local
 .devcontainer/docker-compose.extend.yml
-/TAGS
+.devcontainer/volumes*/

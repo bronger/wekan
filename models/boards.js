@@ -109,6 +109,8 @@ Boards.attachSchema(
        * List of labels attached to a board
        */
       type: [Object],
+      optional: true,
+      /* Commented out, so does not create labels to new boards.
       // eslint-disable-next-line consistent-return
       autoValue() {
         if (this.isInsert && !this.isSet) {
@@ -122,6 +124,7 @@ Boards.attachSchema(
           }));
         }
       },
+      */
     },
     'labels.$._id': {
       /**
@@ -365,6 +368,14 @@ Boards.attachSchema(
     allowsRequestedBy: {
       /**
        * Does the board allows requested by?
+       */
+      type: Boolean,
+      defaultValue: true,
+    },
+
+    allowsCardSortingByNumber: {
+      /**
+       * Does the board allows card sorting by number?
        */
       type: Boolean,
       defaultValue: true,
@@ -1185,6 +1196,10 @@ Boards.mutations({
 
   setAllowsRequestedBy(allowsRequestedBy) {
     return { $set: { allowsRequestedBy } };
+  },
+
+  setAllowsCardSortingByNumber(allowsCardSortingByNumber) {
+    return { $set: { allowsCardSortingByNumber } };
   },
 
   setAllowsAttachments(allowsAttachments) {
